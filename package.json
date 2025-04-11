@@ -11,8 +11,12 @@
   },
   "scripts": {
     "test": "playwright test",
+    "test:header": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "test:debug": "playwright test --debug",
     "test:report": "playwright show-report"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
   }
 }
