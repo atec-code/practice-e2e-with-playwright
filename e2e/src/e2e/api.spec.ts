@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test';
-import { getProductIdFromApi } from '../support/util';
-import { baseApiUrl } from '../../playwright.config';
+import { getProductIdFromApi } from '../../support/util';
+import { baseApiUrl } from '../../../playwright.config';
 
 test.describe('api testing', () =>{
     let productId:string;

@@ -1,16 +1,19 @@
 import { defineConfig, devices } from '@playwright/test';
-import { get } from 'http';
+import dotenv from 'dotenv';
 import path from 'path';
 
-export const STORAGE_STATE = path.join(__dirname, 'playwright/.auth/user.json');
+export const USER_AUTH_STORAGE_PATH = path.join(__dirname, 'playwright/.auth/user.json');
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+
+dotenv.config({ path: path.resolve(__dirname, '.env') });
+
+export const userName = process.env.USERNAME === undefined ? '' : process.env.USERNAME;
+export const password= process.env.PASSWORD === undefined ? '' : process.env.PASSWORD;
+export const baseApiUrl = process.env.BASE_API_URL === undefined ? '' : process.env.BASE_API_URL;
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -51,7 +54,7 @@ export default defineConfig({
       dependencies: ['setup'],
       use: {
          ...devices['Desktop Chrome'],
-        storageState: STORAGE_STATE,
+        storageState: USER_AUTH_STORAGE_PATH
         },
       testIgnore: /.*\.setup\.spec\.ts/,
       

@@ -10,8 +10,9 @@ export class CheckoutPageObject{
     }
 
     async clickOnProceedToCheckoutButton(atStepNumber: CheckoutProceedSteps) {
-        const proceedButtonAtPage = getProceedButtonDataTestId(atStepNumber)
-        await this.page.getByTestId(proceedButtonAtPage).click()
+        const proceedButtonAtPage = getProceedButtonDataTestId(atStepNumber);
+        const btnObject =  this.page.getByTestId(proceedButtonAtPage);
+        await btnObject.click()
     }
 
     async clickOnFinishButton() {
