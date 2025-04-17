@@ -1,16 +1,15 @@
 import {test, expect} from '@playwright/test';
-import { getProductTestId } from '../support/util';
-import { ProductDescription } from './page-object/productDescription.pageobject';
-import { execSync } from 'child_process';
-import { CheckoutPageObject } from './page-object/checkout.pageobject';
-import { CheckoutProceedSteps, MonthlyInstallments, PaymentMethods } from '../support/e2e';
-import { USER_AUTH_STORAGE_PATH } from '../../playwright.config';
+import { getProductTestId } from '../../support/util';
+import { ProductDescription } from '../page-object/productDescription.pageobject';
+import { CheckoutPageObject } from '../page-object/checkout.pageobject';
+import { CheckoutProceedSteps, MonthlyInstallments, PaymentMethods } from '../../support/e2e';
+import { baseApiUrl } from '../../../playwright.config';
 
 test.describe('e2e practicing with playwright with logged in user', () => {
     let productId:string;
 
     test.beforeAll(async ({request}) =>{
-        const productRequest = await request.get('https://api.practicesoftwaretesting.com/products');
+        const productRequest = await request.get(`${baseApiUrl}/products`);
         const body = await productRequest.json();
         productId = body.data.find(product => product.name === 'Combination Pliers').id;
     })
@@ -20,12 +19,11 @@ test.describe('e2e practicing with playwright with logged in user', () => {
 
     test('should have the correct title', async ({page}) => {
         expect(page).toHaveTitle('Practice Software Testing - Toolshop - v5.0');
-        console.log('Title is correct');
     });
 
     test('visual test of the start page', async ({page}) =>{
         await page.waitForLoadState('networkidle');
-        await expect(page).toHaveScreenshot('startPage.png');
+        await expect(page).toHaveScreenshot('startPage.png', {mask: [page.locator('title')]});
     });
 
     test('should provide a checkout of a product', async ({page}) =>{
