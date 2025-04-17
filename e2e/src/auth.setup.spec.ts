@@ -2,10 +2,7 @@ import { test as setup  } from "@playwright/test";
 import { startPageDataTestId, loginPageDataTestId } from "../support/e2e";
 import 'dotenv/config';
 import { get } from "http";
-import { STORAGE_STATE } from "../../playwright.config";
-
-const userName = process.env.USERNAME === undefined ? '' : process.env.USERNAME;
-const password= process.env.PASSWORD === undefined ? '' : process.env.PASSWORD;
+import { USER_AUTH_STORAGE_PATH, userName, password } from "../../playwright.config";
 
 setup('login to site', async ({page, context}) =>{
     await page.goto('/');
@@ -14,5 +11,5 @@ setup('login to site', async ({page, context}) =>{
     await page.getByTestId(loginPageDataTestId.passwordInput).fill(password);
     await page.getByTestId(loginPageDataTestId.signInButton).click();
     await page.waitForLoadState('networkidle');
-    await context.storageState({path: STORAGE_STATE});
+    await context.storageState({path: USER_AUTH_STORAGE_PATH});
 })
