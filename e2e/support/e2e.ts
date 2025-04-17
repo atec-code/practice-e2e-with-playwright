@@ -1,5 +1,9 @@
 
-export const getProceedButtonDataTestId = (stepNumber: string) =>`proceed-${stepNumber}`;
+export enum CheckoutProceedSteps{
+    ProceedToSignIn= '1',
+    ProceedToBillingAddress= '2',
+    ProceedToPayment= '3'
+}
 
 export enum PaymentMethods{
     BankTransfer= 'Bank Transfer',
@@ -30,7 +34,7 @@ export const checkoutPageDateTestId = {
     proceedToCheckoutButton: 'proceed-1',
     quanityOfItemsInCart: 'product-quantity',
     productTitle: 'product-title',
-    productPrice: 'product-title',
+    productPrice: 'product-price',
     totalPrice: 'line-price',
     cartTotal: 'cart-total',
     billingStreetAddress:'street',
@@ -42,3 +46,11 @@ export const checkoutPageDateTestId = {
     finish:'finish',
     paymentSuccessMessage: 'payment-success-message',
 } as const;
+
+export const productDescriptionPageDataTestId = {
+    addToChart: 'add-to-cart',
+    productName: 'product-name',
+    productPrice: 'unit-price',
+    productDescription:'product-description',
+    productQuantity: 'quantity'
+}as const;
