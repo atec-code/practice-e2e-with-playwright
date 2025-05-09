@@ -53,8 +53,7 @@ export default defineConfig({
       name: 'e2e',
       dependencies: ['setup'],
       use: {
-         ...devices['Desktop Chrome'],
-        storageState: USER_AUTH_STORAGE_PATH
+         ...devices['Desktop Chrome']
         },
       testIgnore: /.*\.setup\.spec\.ts/,
       

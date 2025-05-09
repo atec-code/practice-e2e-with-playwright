@@ -1,9 +1,10 @@
 import {test, expect} from '@playwright/test';
 import { getProductIdFromApi } from '../../support/util';
-import { baseApiUrl } from '../../../playwright.config';
+import { baseApiUrl, USER_AUTH_STORAGE_PATH } from '../../../playwright.config';
 
 test.describe('api testing', () =>{
     let productId:string;
+    test.use({storageState: USER_AUTH_STORAGE_PATH});
     test.beforeAll(async ({request}) =>{
         productId = await getProductIdFromApi(request, 'Combination Pliers');
     })

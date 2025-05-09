@@ -3,11 +3,12 @@ import { getProductTestId } from '../../support/util';
 import { ProductDescription } from '../page-object/productDescription.pageobject';
 import { CheckoutPageObject } from '../page-object/checkout.pageobject';
 import { CheckoutProceedSteps, MonthlyInstallments, PaymentMethods } from '../../support/e2e';
-import { baseApiUrl } from '../../../playwright.config';
+import { baseApiUrl, USER_AUTH_STORAGE_PATH } from '../../../playwright.config';
 
 test.describe('e2e practicing with playwright with logged in user', () => {
     let productId:string;
 
+    test.use({storageState: USER_AUTH_STORAGE_PATH});
     test.beforeAll(async ({request}) =>{
         const productRequest = await request.get(`${baseApiUrl}/products`);
         const body = await productRequest.json();
