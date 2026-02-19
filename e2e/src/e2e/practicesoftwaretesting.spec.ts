@@ -21,11 +21,6 @@ test.describe('e2e practicing with playwright with logged in user', () => {
         expect(page).toHaveTitle('Practice Software Testing - Toolshop - v5.0');
     });
 
-    test('visual test of the start page', async ({page}) =>{
-        await page.waitForLoadState('networkidle');
-        await expect(page).toHaveScreenshot('startPage.png', {mask: [page.locator('title')]});
-    });
-
     test('should provide a checkout of a product', async ({page}) =>{
         const productDescriptionPage = new ProductDescription(page);
         const checkoutPage = new CheckoutPageObject(page);

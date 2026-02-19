@@ -11,9 +11,11 @@ export const USER_AUTH_STORAGE_PATH = path.join(__dirname, 'playwright/.auth/use
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
+const DEFAULT_BASE_API_URL = 'https://api.practicesoftwaretesting.com';
+
 export const userName = process.env.USERNAME === undefined ? '' : process.env.USERNAME;
 export const password= process.env.PASSWORD === undefined ? '' : process.env.PASSWORD;
-export const baseApiUrl = process.env.BASE_API_URL === undefined ? '' : process.env.BASE_API_URL;
+export const baseApiUrl = process.env.BASE_API_URL?.trim() || DEFAULT_BASE_API_URL;
 
 /**
  * See https://playwright.dev/docs/test-configuration.
